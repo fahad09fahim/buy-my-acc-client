@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import {FaHeart, FaRegHeart } from "react-icons/fa";
 
 const MediaCard = ({ post }) => {
-    const {text, image,_id} = post;
+    const {text, image,_id,totalLove} = post;
     const { register, handleSubmit, reset } = useForm();
     const [isLoved, setIsLoved] = useState(false);
     const [loveCount, setLoveCount] = useState(0);
@@ -13,11 +13,11 @@ const MediaCard = ({ post }) => {
         console.log(data)
     }
     // handle love count changes with api calls //
-   
     const toggleLove = () => {
-      setIsLoved((prev) => !prev);
-      setLoveCount((prevCount) => (isLoved ? prevCount - 1 : prevCount + 1));  
-      const newLoveCount = isLoved ? loveCount - 1 : loveCount + 1;
+        const newLoveCount = isLoved ? loveCount - 1 : loveCount + 1;
+            setLoveCount(newLoveCount);
+            setIsLoved((prev) => !prev);
+      
       fetch(`http://localhost:5000/post/${_id}`,
       {
           method:"PATCH",
@@ -28,7 +28,7 @@ const MediaCard = ({ post }) => {
       }
           )
           .then(res=>res.json())
-          .then(data=>console.log(data))
+          .then(data=>{console.log(data)})
     };
 
 
@@ -41,18 +41,23 @@ const MediaCard = ({ post }) => {
    
     <p className="text-center"> {text}</p>
     <div className="flex flex-col justify-center">
-    <button
+    
    
-      className={`${isLoved ? 'text-red-500' : 'text-black'} flex gap-2 my-2 justify-end`}
-      onClick={toggleLove}
-    >
-      {isLoved ? <FaHeart className="h-7 w-7"/> : <FaRegHeart className="h-7 w-7"/>}
-      {loveCount}
-    </button>
+   {
+totalLove? <button className="text-red-500 flex gap-2 my-2 justify-end"><FaHeart className="h-7 w-7"/> {totalLove}</button> :
+<button
+className={`${isLoved ? 'text-red-500' : 'text-black'} flex gap-2 my-2 justify-end`}
+onClick={toggleLove}
+>
+{isLoved ? <FaHeart className="h-7 w-7"/> : <FaRegHeart className="h-7 w-7"/>}
+{loveCount}
+</button>
+   }
     <form onSubmit={handleSubmit(onSubmit)}>
     <textarea placeholder="Comment Here"  {...register("comment",{ required: true })} className="textarea textarea-bordered textarea-xs w-full max-w-xs" ></textarea>
     <input className="btn btn-xs btn-outline" type="submit" value="comment" />
     </form>
+   <button>details</button>
     </div>
   </div>
 </div>

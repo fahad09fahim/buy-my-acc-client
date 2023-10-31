@@ -1,9 +1,24 @@
-import { useForm } from 'react-hook-form';
+import { useContext, useEffect, useState } from 'react';
+import { set, useForm } from 'react-hook-form';
+import { AuthContext } from '../../Provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 
 // image hosting api
 const image_hosting_api = import.meta.env.VITE_ImageBB;
 const TextArea = () => {
+ const {user} = useContext(AuthContext)
+
+ const [disable, setDisable ] = useState(true);
+  useEffect(()=>{
+    if(user){
+      setDisable(false);
+    }
+    else{
+      setDisable(true);
+    }
+  },[user])
+
   const { register, handleSubmit, reset } = useForm();
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_api}`
   const onSubmit = (data) =>{
@@ -51,17 +66,21 @@ const TextArea = () => {
             placeholder="Share your thought..."
             {...register("text",{ required: true })}
             className="textarea textarea-accent textarea-bordered textarea-lg w-full max-w-sm h-fit md:h-52"
+          disabled={disable}
           ></textarea>
           <input
             type="file"
             {...register("image",{ required: true })}
             className="file-input file-input-bordered file-input-info file-input-xs w-full max-w-xs"
+            disabled={disable}
           />
-          <input
+          {
+            user? <input
             className="btn btn-info font-semibold"
             type="submit"
             value={"Post"}
-          />
+          />: <Link className='btn btn-sm btn-error  font-semibold' to="login">Log in First</Link> 
+          }
         </form>
       </div>
     </div>
