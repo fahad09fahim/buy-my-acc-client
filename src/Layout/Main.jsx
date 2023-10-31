@@ -1,7 +1,12 @@
-import Home from "../pages/Home/Home/Home";
+import { Outlet } from "react-router-dom";
+import Navbar from './../pages/Home/Header/Navbar';
+
 
 const Main = () => {
-  return <Home />;
+  return <>
+  <Navbar/>
+  <Outlet/>
+  </>;
 };
 
 export default Main;

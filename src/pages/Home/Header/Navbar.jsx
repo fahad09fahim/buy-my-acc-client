@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <a>Media</a>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/media">Media</Link>
       </li>
       <li>
         <a>Message</a>

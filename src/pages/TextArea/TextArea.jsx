@@ -32,7 +32,7 @@ const TextArea = () => {
           .then(data=>{
             if(data.insertedId){
               reset()
-              alert("post has published")
+              alert("post has been published")
             }
           })
 
