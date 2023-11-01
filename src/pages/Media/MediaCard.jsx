@@ -7,24 +7,63 @@ import { FaRegHeart } from 'react-icons/fa';
  
 const MediaCard = ({ post }) => {
  const {user} = useContext(AuthContext)
-
+const email = user?.email;
     const {text, image,_id} = post;
     const { register, handleSubmit, reset } = useForm();
     const [isLoved, setIsLoved] = useState(false);
     const [loveCount, setLoveCount] = useState(0);
 
-   
+   useEffect(()=>{
+    fetch(`http://localhost:5000/reaction/${email}`  )
+    .then(res=>res.json())
+    .then(data=>{
+      // console.log(data)
+
+      if(data.previousCount.length>0){
+          const countPrevious = data.previousCount;
+          countPrevious.map(result=> {
+        if(result.id === _id){
+          setLoveCount(result.count)
+          setIsLoved(true)
+        }
+       })
+      }
+      else if(data.count.length>0){
+        const countReaction = data.count
+        countReaction.map(reactCount=>{
+          if(reactCount.id === _id){
+            setLoveCount(reactCount.count)
+          }
+        })
+      }
+       
+    })
+   },[email])
  
 const handleLoveClick =()=>{
 
   if(!isLoved){
-    
-    setIsLoved(true);
-    setLoveCount(1)
+    const storeLoveCount = {count:1, id:_id, email:user.email}
+    fetch('http://localhost:5000/reaction',{
+      method:"POST",
+      headers:{
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(storeLoveCount)
+    })
+  .then(res=>res.json())
+  .then(data=>{
+    if(data.message){
+      setLoveCount(result.count+1);
+      setIsLoved(false)
+    }
+  })
+
   }
 else if(isLoved){
    setIsLoved(false)
   setLoveCount(0)
+  console.log(isLoved)
 }
  
 
