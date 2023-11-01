@@ -13,7 +13,7 @@ const MediaCard = ({ post }) => {
   const [loveCount, setLoveCount] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reaction/${_id}`)
+    fetch(`https://share-wave-server.vercel.app/reaction/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         const id = data.result.id;
@@ -23,7 +23,7 @@ const MediaCard = ({ post }) => {
           const loveCount = {count: totalCount, id:_id}
   
         //  save love reaction data into All post Database
-          fetch(`http://localhost:5000/post`,{
+          fetch(`https://share-wave-server.vercel.app/post`,{
             method:"PATCH",
             headers:{
               "content-type": "application/json"
@@ -41,7 +41,7 @@ const MediaCard = ({ post }) => {
   const handleLoveClick = () => {
     if (user) {
       const storeLoveCount = { count: 1, id: _id, email: user.email };
-      fetch("http://localhost:5000/reaction", {
+      fetch("https://share-wave-server.vercel.app/reaction", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -65,7 +65,7 @@ const MediaCard = ({ post }) => {
   const onSubmit = (data) => {
     const comment = data.comment;
     const newData = { id: _id, comment: comment };
-    fetch(`http://localhost:5000/comment`, {
+    fetch(`https://share-wave-server.vercel.app/comment`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -35,7 +35,7 @@ const TextArea = () => {
           const postData= {text,image:imgURL}
           console.log(postData)
           // send data to database
-          fetch("http://localhost:5000/post",{
+          fetch("https://share-wave-server.vercel.app/post",{
             method: "POST",
             headers:{
               "content-type": "application/json"
@@ -55,7 +55,7 @@ const TextArea = () => {
  
   }
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center mx-3">
       <div className="  p-0 md:p-12 w-full md:w-1/2 border border-stone-800 rounded-xl">
         <form
           className="flex flex-col justify-center p-2  items-center gap-2"

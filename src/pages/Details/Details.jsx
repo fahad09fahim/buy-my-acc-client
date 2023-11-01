@@ -10,7 +10,7 @@ const Details = () => {
   const searchId = post.filter((p) => p._id === id);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/comment/${id}`)
+    fetch(`https://share-wave-server.vercel.app/comment/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data) {
