@@ -1,48 +1,38 @@
 import { useContext, useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from './../../Provider/AuthProvider';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHeart } from 'react-icons/fa';
-import { FaRegHeart } from 'react-icons/fa';
+
  
 const MediaCard = ({ post }) => {
  const {user} = useContext(AuthContext)
-const email = user?.email;
+const navigate = useNavigate()
     const {text, image,_id} = post;
     const { register, handleSubmit, reset } = useForm();
-    const [isLoved, setIsLoved] = useState(false);
+   
     const [loveCount, setLoveCount] = useState(0);
 
    useEffect(()=>{
-    fetch(`http://localhost:5000/reaction/${email}`  )
-    .then(res=>res.json())
-    .then(data=>{
-      // console.log(data)
-
-      if(data.previousCount.length>0){
-          const countPrevious = data.previousCount;
-          countPrevious.map(result=> {
-        if(result.id === _id){
-          setLoveCount(result.count)
-          setIsLoved(true)
-        }
-       })
-      }
-      else if(data.count.length>0){
-        const countReaction = data.count
-        countReaction.map(reactCount=>{
-          if(reactCount.id === _id){
-            setLoveCount(reactCount.count)
+         fetch(`http://localhost:5000/reaction/${_id}`)
+         .then(res=>res.json())
+         .then(data=>
+          
+        {
+          const id = data.result.id;
+          const totalCount = data.result.sum;
+          if(id === _id){
+            setLoveCount(totalCount)
+          console.log(totalCount, id)
           }
-        })
-      }
-       
-    })
-   },[email])
+        }
+          )
+   },[_id])
  
 const handleLoveClick =()=>{
 
-  if(!isLoved){
+    
+   if(user){
     const storeLoveCount = {count:1, id:_id, email:user.email}
     fetch('http://localhost:5000/reaction',{
       method:"POST",
@@ -53,17 +43,18 @@ const handleLoveClick =()=>{
     })
   .then(res=>res.json())
   .then(data=>{
-    if(data.message){
-      setLoveCount(result.count+1);
-      setIsLoved(false)
+    
+    
+    if(!data.message){
+      setLoveCount(loveCount +1 );
+    }
+    else{
+      alert("already Loved This post")
     }
   })
-
-  }
-else if(isLoved){
-   setIsLoved(false)
-  setLoveCount(0)
-  console.log(isLoved)
+   }
+else{
+  navigate('/login')
 }
  
 
@@ -96,10 +87,10 @@ else if(isLoved){
     <p className="text-center"> {text}</p>
     <div>
     <button
-className={`${isLoved ? 'text-red-500' : 'text-black'} flex gap-2 my-2 justify-end`}
+className= 'text-red-500 flex gap-2 my-2 justify-end'
 onClick={handleLoveClick}
 >
-{isLoved ? <FaHeart className="h-7 w-7"/> : <FaRegHeart className="h-7 w-7"/>}
+ <FaHeart className="h-7 w-7"/> 
 </button>
       <span className="ml-2">{loveCount} Loves</span>
     </div>
