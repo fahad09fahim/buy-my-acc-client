@@ -8,6 +8,7 @@ import Home from '../pages/Home/Home/Home'
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
+import Details from "../pages/Details/Details";
 
 const router = createBrowserRouter([
     {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
         {
           path:'/media',
           element:<Media/>,
-          loader: async()=>fetch("http://localhost:5000/post")
+        
         },
         {
           path:"/register",
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         {
           path:'/login',
           element:<Login/>
+        },
+        {
+          path:"/details/:id",
+          element:<Details/>
         }
       ]
     },

@@ -55,10 +55,10 @@ const TextArea = () => {
  
   }
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center ">
       <div className="  p-0 md:p-12 w-full md:w-1/2 border border-stone-800 rounded-xl">
         <form
-          className="flex flex-col justify-center  items-center gap-2"
+          className="flex flex-col justify-center p-2  items-center gap-2"
           onSubmit={handleSubmit(onSubmit)}
         >
           <textarea

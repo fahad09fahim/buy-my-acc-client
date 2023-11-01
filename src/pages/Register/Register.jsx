@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const Register = () => {
 
     const {createUser} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -18,7 +21,7 @@ const Register = () => {
     createUser(data.email,data.password)
     .then(res=>{
         const user = res.user
-        console.log(user)
+        navigate(from, { replace: true })
     })
     .then(()=>{
         reset()
