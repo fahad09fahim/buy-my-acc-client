@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 const image_hosting_api = import.meta.env.VITE_ImageBB;
 const TextArea = () => {
  const {user} = useContext(AuthContext)
-
  const [disable, setDisable ] = useState(true);
   useEffect(()=>{
     if(user){

@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         },
         {
           path:'/media',
-          element:<PrivateRoute><Media/></PrivateRoute>,
+          element:<Media/>,
           loader: async()=>fetch("http://localhost:5000/post")
         },
         {
