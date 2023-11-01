@@ -20,7 +20,20 @@ const MediaCard = ({ post }) => {
         const totalCount = data.result.sum;
         if (id === _id) {
           setLoveCount(totalCount);
-          console.log(totalCount, id);
+          const loveCount = {count: totalCount, id:_id}
+  
+        //  save love reaction data into All post Database
+          fetch(`http://localhost:5000/post`,{
+            method:"PATCH",
+            headers:{
+              "content-type": "application/json"
+            },
+            body: JSON.stringify(loveCount)
+          })
+          .then(res=>res.json())
+          .then(data=>console.log(data))
+
+         
         }
       });
   }, [_id]);
