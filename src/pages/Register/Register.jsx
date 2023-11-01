@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../Social/SocialLogin";
 const Register = () => {
 
     const {createUser} = useContext(AuthContext)
@@ -100,6 +101,7 @@ const Register = () => {
             <button className="btn  btn-info">Register</button>
           </div>
         </form>
+        <SocialLogin/>
       </div>
     </div>
   );

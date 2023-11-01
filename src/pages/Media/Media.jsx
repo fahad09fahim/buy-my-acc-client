@@ -13,6 +13,7 @@ const Media = () => {
             post={post}
             ></MediaCard>)
         }
+       
         </div>
     );
 };

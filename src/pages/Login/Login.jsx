@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../Social/SocialLogin";
+
 
 const Login = () => {
     const {signIn}= useContext(AuthContext);
@@ -80,6 +82,8 @@ const Login = () => {
               <button className="btn btn-success">Login</button>
             </div>
           </form>
+      
+          <SocialLogin/>
         </div>
       </div>
     );
