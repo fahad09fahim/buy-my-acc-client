@@ -4,7 +4,7 @@ const usePost = () => {
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("https://share-wave-server.vercel.app/post")
+    fetch("https://share-wave-server.up.railway.app/post")
       .then((res) => res.json())
       .then((data) => {
         setPost(data);

@@ -35,7 +35,7 @@ const TextArea = () => {
           const postData= {text,image:imgURL}
           console.log(postData)
           // send data to database
-          fetch("https://share-wave-server.vercel.app/post",{
+          fetch("https://share-wave-server.up.railway.app/post",{
             method: "POST",
             headers:{
               "content-type": "application/json"
