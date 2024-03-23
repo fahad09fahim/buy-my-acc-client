@@ -1,3 +1,4 @@
+import Footer from "../../Footer/Footer";
 import TextArea from "../../TextArea/TextArea";
 import PopularPost from "../PopularPost/Popularpost";
 
@@ -8,6 +9,7 @@ const Home = () => {
         <div>
             <TextArea/>
             <PopularPost/>
+            <Footer/>
         </div>
     );
 };

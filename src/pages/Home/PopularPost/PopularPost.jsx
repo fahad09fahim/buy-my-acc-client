@@ -21,7 +21,7 @@ const PopularPost = () => {
           <figure>
           <img src={post.image} className=" p-2 rounded-lg" alt="Shoes" />
         </figure>
-        <h2>{post.text}</h2>
+        <h2>Price: {post.text}$</h2>
         <span className="flex items-center gap-3"><FaHeart className="text-red-700 h-7 w-7"/> {post.count}</span>
           </div>
           </div>

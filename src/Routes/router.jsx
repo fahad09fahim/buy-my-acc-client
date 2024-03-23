@@ -9,7 +9,8 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import Details from "../pages/Details/Details";
-import About from "../pages/About/About";
+import BuyNow from "../pages/BuyPages/BuyNow";
+
 
 const router = createBrowserRouter([
     {
@@ -38,9 +39,10 @@ const router = createBrowserRouter([
           element:<Details/>
         },
         {
-          path:"/about",
-          element:<About/>
+          path:"/buyNow/:id",
+          element:<BuyNow/>
         }
+        
       ]
     },
 

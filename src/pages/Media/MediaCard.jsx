@@ -13,7 +13,7 @@ const MediaCard = ({ post }) => {
   const [loveCount, setLoveCount] = useState(0);
 
   useEffect(() => {
-    fetch(`https://share-wave-server.up.railway.app/reaction/${_id}`)
+    fetch(`http://localhost:5000/reaction/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         const id = data.result.id;
@@ -23,7 +23,7 @@ const MediaCard = ({ post }) => {
           const loveCount = {count: totalCount, id:_id}
   
         //  save love reaction data into All post Database
-          fetch(`https://share-wave-server.up.railway.app/post`,{
+          fetch(`http://localhost:5000/post`,{
             method:"PATCH",
             headers:{
               "content-type": "application/json"
@@ -41,7 +41,7 @@ const MediaCard = ({ post }) => {
   const handleLoveClick = () => {
     if (user) {
       const storeLoveCount = { count: 1, id: _id, email: user.email };
-      fetch("https://share-wave-server.up.railway.app/reaction", {
+      fetch("http://localhost:5000/reaction", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -53,8 +53,8 @@ const MediaCard = ({ post }) => {
           if (!data.message) {
             setLoveCount(loveCount + 1);
             alert("you loved the post");
-          } else {
-            alert("already Loved This post");
+          } else if(data.message == "already loved") {
+            alert("Already liked this Item");
           }
         });
     } else {
@@ -65,7 +65,7 @@ const MediaCard = ({ post }) => {
   const onSubmit = (data) => {
     const comment = data.comment;
     const newData = { id: _id, comment: comment };
-    fetch(`https://share-wave-server.up.railway.app/comment`, {
+    fetch(`http://localhost:5000/comment`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -85,7 +85,8 @@ const MediaCard = ({ post }) => {
         <img src={image} className=" p-2 rounded-lg" alt="Shoes" />
       </figure>
       <div className="card-body">
-        <p className="text-center"> {text}</p>
+        <p className="text-center font-bold">Price: {text}$</p>
+        <span>To buy this account,click on details button.</span>
         <div>
           <button
             className="text-red-500 flex gap-2 my-2 justify-end"

@@ -35,7 +35,7 @@ const TextArea = () => {
           const postData= {text,image:imgURL}
           console.log(postData)
           // send data to database
-          fetch("https://share-wave-server.up.railway.app/post",{
+          fetch("http://localhost:5000/post",{
             method: "POST",
             headers:{
               "content-type": "application/json"
@@ -61,12 +61,13 @@ const TextArea = () => {
           className="flex flex-col justify-center p-2  items-center gap-2"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <textarea
-            placeholder="Share your thought..."
+          <input
+            placeholder="Price $"
             {...register("text",{ required: true })}
-            className="textarea textarea-accent textarea-bordered textarea-lg w-full max-w-sm h-fit md:h-52"
+            className="file-input file-input-bordered text-center file-input-info file-input-xs w-full max-w-xs"
           disabled={disable}
-          ></textarea>
+          type='number'
+          ></input>
           <input
             type="file"
             {...register("image",{ required: true })}

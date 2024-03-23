@@ -16,14 +16,12 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/media">Media</Link>
+        <Link to="/media">Accounts</Link>
       </li>
       <li>
         <a>Message</a>
       </li>
-      <li>
-        <Link to="/about">About</Link>
-      </li>
+      
    
         {
           user?  
@@ -64,9 +62,10 @@ const Navbar = () => {
         </div>
         {/* logo */}
         <h2 className="text-xl font-semibold ">
-          Share W<span className="text-red-700">a</span>
-          <span className="text-green-700">v</span>
-          <span className="text-blue-700">e</span>
+          Buy My <span className="text-red-700">A</span>
+          <span className="text-green-700">CC</span>
+          <span className="text-blue-700">O</span>
+          UNT
         </h2>
       </div>
       {/* large device navLinks */}
