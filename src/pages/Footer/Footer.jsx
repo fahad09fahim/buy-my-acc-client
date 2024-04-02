@@ -4,7 +4,7 @@ const Footer = () => {
     const current = new Date();
     return (
         <div className='bg-slate-700 text-white text-center'>
-             <p>© {current.getFullYear()} - Coders It Ltd. All Rights Reserved.</p>
+             <p>© {current.getFullYear()} - Fahim. All Rights Reserved.</p>
         </div>
     );
 };

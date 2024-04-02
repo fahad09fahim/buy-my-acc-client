@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link to="/media">Accounts</Link>
       </li>
       <li>
-        <a>Message</a>
+        <Link to="/message">Message</Link>
       </li>
       
    

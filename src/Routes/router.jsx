@@ -10,6 +10,7 @@ import Login from "../pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import Details from "../pages/Details/Details";
 import BuyNow from "../pages/BuyPages/BuyNow";
+import Message from "../pages/Message/Message";
 
 
 const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         {
           path:"/buyNow/:id",
           element:<BuyNow/>
+        },
+        {
+          path:"/message",
+          element:<Message/>
         }
         
       ]
